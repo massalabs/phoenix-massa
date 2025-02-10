@@ -1,5 +1,5 @@
 import {getClient, getDynamicCosts, okStatusOrThrow, pollEvents} from "./utils";
-import {Client, Args, ISignature, NativeType, ArrayTypes, IReadData} from "@massalabs/massa-web3";
+import {Client, Args, ISignature, NativeType, ArrayTypes, IReadData, fromMAS} from "@massalabs/massa-web3";
 import keccak256 from "@indeliblelabs/keccak256";
 import {wBytes} from "./serializables/wBytes";
 import {PriceData} from "./serializables/umbrella";
@@ -120,7 +120,7 @@ async function updatePrices(client: Client, scAddr: string, args: Args) {
     const deployerAccount = client.wallet().getBaseAccount()!;
     const operationId = await client.smartContracts().callSmartContract(
         {
-            fee: 0n,
+            fee: fromMAS(0.01),
             // maxGas: 70_000_000n,
             // coins: 0n,
             maxGas: estimated_gas,

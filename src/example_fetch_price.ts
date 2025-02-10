@@ -6,7 +6,7 @@ import {PriceData} from "./serializables/umbrella";
 let getPriceDataArgs = new Args();
 let pair_ = keccak256("ARB-USD");
 getPriceDataArgs.addUint8Array(new Uint8Array(pair_));
-const scAddr: string = "AS1AbCFgdbCxmu5nNd13gXEZmuVqq8kKmZ1vJLbRnSw4kChNCa1d";
+const scAddr: string = "AS12bVikBj3xFP3ouP71hpWbzLRDTxq2RaY2ssQWzoSZJUdK3aRm";
 
 const {client, account} = await getClient();
 

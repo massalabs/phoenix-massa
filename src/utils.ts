@@ -178,7 +178,8 @@ export async function getDynamicCosts(
         // console.log("events", readOnlyCall.info.output_events);
         // console.log("===");
 
-        estimatedGas = BigInt(Math.min(Math.floor(readOnlyCall.info.gas_cost * gas_margin), MAX_GAS_EXECUTE_SC));
+        // estimatedGas = BigInt(Math.min(Math.floor(readOnlyCall.info.gas_cost * gas_margin), MAX_GAS_EXECUTE_SC));
+        estimatedGas = bigint_min(BigInt(Math.floor(readOnlyCall.info.gas_cost * gas_margin)), MAX_GAS_EXECUTE_SC);
         let filteredEvents = readOnlyCall.info.output_events.filter((e) => e.data.includes(prefix));
         // console.log("filteredEvents:", filteredEvents);
         estimatedStorageCost = Math.floor(
@@ -192,4 +193,12 @@ export async function getDynamicCosts(
         );
     }
     return [estimatedGas, estimatedStorageCost];
+}
+
+function bigint_min(a: bigint, b: bigint): bigint {
+    if (a < b) {
+        return a;
+    } else {
+        return b;
+    }
 }

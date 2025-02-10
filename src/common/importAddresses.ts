@@ -1,4 +1,4 @@
-import {Args, ArrayTypes, Client} from "@massalabs/massa-web3";
+import {Args, ArrayTypes, Client, fromMAS} from "@massalabs/massa-web3";
 import {Bytes32} from "../serializables/bytes32";
 import {wBytes} from "../serializables/wBytes";
 import {DeployedContracts, getDeployedContracts} from "./deployed";
@@ -29,7 +29,7 @@ export async function importAddresses(client: Client, contractName: keyof Deploy
 
   return client.smartContracts().callSmartContract(
     {
-      fee: 0n,
+      fee: fromMAS(0.01),
       maxGas: estimated_gas,
       coins: BigInt(estimated_storage_cost),
       targetAddress: deployed.Registry,
